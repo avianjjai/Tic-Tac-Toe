@@ -6,9 +6,7 @@ from Player import Player
 lock = threading.Lock()
 active_users = []
 def createPlayer(c, addr):
-    c.send('Enter Name: '.encode())
-    name = c.recv(1024).decode()
-    player = Player(addr, c, name)
+    player = Player(addr, c, 'random')
     lock.acquire()
     active_users.append(player)
     lock.release()
