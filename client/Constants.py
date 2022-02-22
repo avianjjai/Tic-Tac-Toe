@@ -1,0 +1,4 @@
+LOSS = 'LOSS'
+TIE = 'TIE'
+WIN = 'WIN'
+RUNNING = 'RUNNING'

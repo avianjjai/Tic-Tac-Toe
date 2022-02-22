@@ -8,10 +8,12 @@ class Board:
         ]
 
     def display_board(self):
+        s = ''
         for row in self.board:
             for col in row:
-                print('%-5s'%(col), end='')
-            print('')
+                s += '%-5s'%(col)
+            s += '\n'
+        return s
 
     def __winByRow(self, row: int, piece: str):
         for col in range(1, 4):
