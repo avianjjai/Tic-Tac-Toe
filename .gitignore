@@ -1,1 +1,3 @@
 .__pycache/
+./server/.__pycache/
+./client/.__pycache/
