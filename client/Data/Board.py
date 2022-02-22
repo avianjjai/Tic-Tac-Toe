@@ -15,6 +15,7 @@ class Board(UI_Board):
         ]
         self.piece = piece
         self.feed(self.data)
+        self.setPiece(self.piece)
 
         thr = threading.Thread(target=api.listen, args=(server, self))
         thr.start()
@@ -33,8 +34,9 @@ class Board(UI_Board):
         
         self.data[row][col] = self.piece
         self.feed(self.data)
-        self.active = not self.active
 
+        self.active = not self.active
+        self.setTurn(self.active)
         send = pickle.dumps({'type': 'UPDATE', 'data': self.data})
         self.server.send(send)
 

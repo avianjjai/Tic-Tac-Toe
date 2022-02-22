@@ -7,16 +7,17 @@ def listen(server, board=None):
         if data['type'] == 'PLAY':
             board.update(data['data'])
             board.active = not board.active
+            board.setTurn(board.active)
 
         if data['type'] == 'END':
             board.update(data['data'])
             board.active = False
-            print('Game Result:', data['result'])
+            board.setGameResult(data['result'])
             break
 
         if data['type'] == 'HAND SACK':
             pass
     
-    # server.close()
+    server.close()
     # del board
     

@@ -21,9 +21,9 @@ class Player:
 
     def play(self, board: Board):
         send = pickle.dumps({'type': 'PLAY', 'data': board.board})
-        #print(send)
-        # print('', end='')
+        print('Send: ' + self.name)
         self.pointer.send(send)
+
         data = pickle.loads(self.pointer.recv(1024))
         if data['type'] == 'UPDATE':
             board.set(data['data'])
