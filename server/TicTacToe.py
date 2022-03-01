@@ -1,42 +1,22 @@
-import socket
 import threading
-from Game import Game
-from Player import Player
-
-lock = threading.Lock()
-active_users = []
-def createPlayer(c, addr):
-    player = Player(addr, c, 'random')
-    lock.acquire()
-    active_users.append(player)
-    lock.release()
+from Helper.createGame import listenGame
+from API.api import listenClient
 
 
 def main():
-    try:
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        print('Server Socket Created Successfully')
-    except socket.error as err:
-        print('Server Socket creation failed with error %s' %(err))
+    
 
-    PORT = 3000
-    s.bind(('', PORT))
-    print('socket binded to %s' %(PORT))
+    threads = []
 
-    s.listen(5)
-    print('socket is listening')
+    listenClient_thread = threading.Thread(target=listenClient, args=())
+    listenClient_thread.start()
+    threads.append(listenClient_thread)
 
-    count = 0
-    while count < 2:
-        c, addr = s.accept()
-        t = threading.Thread(target=createPlayer, args=(c, addr))
-        t.start()
+    listenGame_thread = threading.Thread(target=listenGame, args=())
+    listenGame_thread.start()
+    threads.append(listenGame_thread)
 
-        count += 1
+    # for x in threads:
+    #     x.join()
 
-    while len(active_users) < 2:
-        pass
-
-    game = Game(active_users[0], active_users[1])
-    game.start_Game()
-    s.close()
+    # server.close()
