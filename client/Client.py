@@ -7,7 +7,8 @@ import pickle
 def main():
     server = socket.socket()
     SERVER_PORT = 3000
-    SERVER_IP = '127.0.0.1'
+    # SERVER_IP = '127.0.0.1'
+    SERVER_IP = '13.82.96.186'
     server.connect((SERVER_IP, SERVER_PORT))
 
     piece = ''
