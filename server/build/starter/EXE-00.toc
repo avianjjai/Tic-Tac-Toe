@@ -1,5 +1,5 @@
 ('/home/avianjjai/Desktop/Incomplete Projects/tic-tac-toe/server/dist/starter',
- False,
+ True,
  False,
  False,
  None,
@@ -179,7 +179,7 @@
  [],
  False,
  False,
- 1646139461,
+ 1646149386,
  [('run',
    '/home/avianjjai/anaconda3/lib/python3.7/site-packages/PyInstaller/bootloader/Linux-64bit-intel/run',
    'EXECUTABLE')])
